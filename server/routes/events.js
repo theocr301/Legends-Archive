@@ -1,29 +1,29 @@
 const express = require('express');
 const router = express.Router();
 
-router.get('/', async (req, res) => {
+router.get('/cars', async (req, res) => {
   try {
-    const events = await Event.find().sort({ date: 1 });
-    res.json(events);
+    const cars = await Car.find().sort({ date: 1 });
+    res.json(cars);
   } catch (err) {
     res.status(500).json({ message: 'Server error' });
   }
 });
 
 
-router.post('/', async (req, res) => {
-  const { title, date, venue } = req.body;
+router.post('/cars', async (req, res) => {
+  const { name, year, chassisNumber } = req.body;
 
-  if (!title || !date || !venue) {
+  if (!name || !year || !chassisNumber) {
     return res.status(400).json({ message: 'Missing required fields' });
   }
 
   try {
-    const newEvent = new Event({ title, date, venue });
-    await newEvent.save();
-    res.status(201).json(newEvent);
+    const newCar = new Car({ name, year, chassisNumber });
+    await newCar.save();
+    res.status(201).json(newCar);
   } catch (err) {
-    res.status(500).json({ message: 'Failed to create event' });
+    res.status(500).json({ message: 'Failed to create car' });
   }
 });
 

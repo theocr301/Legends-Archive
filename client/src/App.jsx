@@ -68,15 +68,27 @@ function App() {
         <div className="content">
           <h1>The new way to track old racecars</h1>
           <p>Track everything from rebuilds to inspections, all the way to FIA HTP's. All in one place.</p>
-          
+
         </div>
-        <div className="createForm">
+
         <div className="createForm">
           <h2>Add a new car</h2>
           <CarForm onAddCar={onAddCar} />
         </div>
+        <div className="cars" id="carList">
+            {loading && <p>Loading cars...</p>}
+            {error && <p className="error">Error: {error}</p>}
+            {cars.length > 0 && (
+              <>
+                <h2>Racecars</h2>
+                {cars.map(car => (
+                  <CarCard key={car._id} car={car} />
+                ))}
+              </>
+            )}
+          </div>
       </div>
-      </div>
+
   );
 }
 
