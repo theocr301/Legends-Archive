@@ -73,7 +73,7 @@ export default function CarForm({ onAddCar}) {
         <label htmlFor="chassisNumber">CHASSIS   </label>
         <input
           className="typeHere"
-          type="number"
+          type="text"
           name="chassisNumber"
           id="chassisNumber"
           placeholder="Chassis number..."
