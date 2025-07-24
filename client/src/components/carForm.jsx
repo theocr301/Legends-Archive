@@ -42,7 +42,7 @@ export default function CarForm({ onAddCar}) {
   return (
     <form onSubmit={handleSubmit} className="carForm">
       <div className="inputBox">
-        <label htmlFor="name">NAME</label>
+        <label htmlFor="name">NAME  </label>
         <input
           className="typeHere"
           type="text"
@@ -56,7 +56,7 @@ export default function CarForm({ onAddCar}) {
         />
       </div>
       <div className="inputBox">
-        <label htmlFor="year">YEAR</label>
+        <label htmlFor="year">YEAR  </label>
         <input
           className="typeHere"
           type="number"
@@ -70,7 +70,7 @@ export default function CarForm({ onAddCar}) {
         />
       </div>
       <div className="inputBox">
-        <label htmlFor="chassisNumber">CHASSIS NUMBER</label>
+        <label htmlFor="chassisNumber">CHASSIS NUMBER  </label>
         <input
           className="typeHere"
           type="number"

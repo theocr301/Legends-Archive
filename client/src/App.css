@@ -4,6 +4,7 @@ body, html {
   background: white;
   font-family: Arial, sans-serif;
   width: 100%;
+  background-image: url('./assets/maybe.jpg');
 }
 .navbar {
   color: black;
@@ -35,7 +36,7 @@ body, html {
   position: relative;
   top: -40px;
   text-align: center;
-  padding-left: 20px;
+  padding-left: 60px;
   margin-top: 50px;
 }
 .column {
@@ -49,27 +50,51 @@ body, html {
   justify-content: flex-end;
   text-align: left;
   float: end;
-  padding-left: 300px;
+  margin-left: 430px;
+  padding: 7px 30px 10px 30px;
+  border: black 1px solid;
+  border-radius: 5px;
 }
 .cars {
   color: black;
   position: relative;
   padding: 50px;
-  text-align: center;
+  flex-direction: row;
   border: black 1px solid;
+}
+.carForm{
+  color: black;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: white;
+  font-size: smaller;
 }
 .inputBox {
 color: black;
-padding: 1px;
+padding: 5px;
 }
 .typeHere {
-  color: white;
+  color: rgb(0, 0, 0);
   background-color: white;
   padding: 2px;
   border-radius: 4px;
 }
 .button {
-  color: rgb(0, 0, 0);
+  color: rgb(144, 144, 144);
   background-color: rgb(164, 164, 164);
 
+}
+.carList.cars {
+  flex-direction:row;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.car-card {
+  color: black;
+  background-color: white;
+  padding: 10px;
+  border-radius: 5px;
+  border: black 1px solid;
+  width: 200px;
 }
