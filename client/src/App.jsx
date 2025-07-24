@@ -69,16 +69,17 @@ function App() {
         <div className="content">
           <h2>The new way to track old racecars</h2>
           <p>Track everything from rebuilds to inspections, all the way to FIA HTP's. All in one place.</p>
-
+          <p>Legends Archive enables you to build a comprehensive history file for your car. It can be passed on during a sale, shared during the advertising phase, or just filled in and cherished</p>
         </div>
 
           <div className="createForm">
             <h2>Add a new car</h2>
+            <p1>To start adding events to your car, register it here.</p1>
             <CarForm onAddCar={onAddCar} />
           </div>
     </div>
     <div className="cars carList" id="carList">
-  <h3>Racecars</h3>
+  <h3>Recent cars</h3>
   {loading && <p>Loading cars...</p>}
   {error && <p className="error">Error: {error}</p>}
   <div className="carCardsRow">
@@ -97,7 +98,7 @@ function CarCard({ car }) {
     <div className="car-card">
       <div className="carName">{car.name}</div>
       <div className="carYear">{car.year}</div>
-      <div className="carChassis">{car.chassisNumber}</div>
+      <div className="carChassis">#{car.chassisNumber}</div>
     </div>
   )
 }

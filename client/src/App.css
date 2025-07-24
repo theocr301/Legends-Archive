@@ -34,9 +34,11 @@ body, html {
 .content {
   color: black;
   position: relative;
-  top: -40px;
+  top: -60px;
+  width: 800px;
   text-align: center;
   padding-left: 60px;
+  padding-right: 420px;
   margin-top: 50px;
 }
 .column {
@@ -50,11 +52,13 @@ body, html {
   justify-content: flex-end;
   text-align: left;
   float: end;
-  margin-left: 430px;
-  padding: 7px 30px 10px 30px;
+  padding-left: 80px;
+  margin-right: 20px;
+  padding: 7px 30px 20px 30px;
   border: black 1px solid;
   border-radius: 5px;
-  background-color: rgb(239, 239, 239);
+  background-color: rgb(242, 242, 242);
+  min-width: fit-content;
 }
 .cars {
   color: black;
@@ -67,12 +71,12 @@ body, html {
   color: black;
   padding: 10px;
   border-radius: 5px;
-  background-color: white;
+  background-color: rgb(242, 242, 242);
   font-size: smaller;
 }
 .inputBox {
 color: black;
-padding: 5px;
+padding: 10px;
 }
 .typeHere {
   color: rgb(0, 0, 0);
@@ -81,9 +85,12 @@ padding: 5px;
   border-radius: 4px;
 }
 .button {
-  color: rgb(144, 144, 144);
-  background-color: rgb(164, 164, 164);
-
+  color: rgb(0, 0, 0);
+  background-color: rgb(233, 233, 233);
+  justify-content: center;
+}
+.button:hover {
+  background-color: rgb(157, 157, 157);
 }
 .carCardsRow {
   display: flex;
@@ -98,4 +105,22 @@ padding: 5px;
   border-radius: 5px;
   border: black 1px solid;
   width: 200px;
+  height: 110px;
+}
+.carName {
+  font-weight: bold;
+  padding: 2px;
+}
+.carYear {
+  font-style: italic;
+  padding: 2px;
+  padding-top: 10px !important;
+}
+.carChassis {
+  font-style: italic;
+  padding: 2px;
+  padding-top: 10px !important;
+}
+.carList {
+  background-color: white;;
 }
