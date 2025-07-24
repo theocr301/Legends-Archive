@@ -1,4 +1,4 @@
-import rccLogo from './assets/RCC.pdf'
+import rccLogo from './assets/RCC.logo.avif'
 import './App.css'
 import CarForm from './components/carForm';
 import React, { useState, useEffect } from 'react';
@@ -60,35 +60,37 @@ function App() {
           </div>
           <div className="navbar__links">
             <ul>
-              <li><a href="#home">Home</a></li>
-              <li><a href="#forsale">Racecars for sale</a></li>
+              <li><a class="nav-link1" href="#https://www.racecar-classifieds.com/">HOME</a></li>
+              <li><a class="nav-link2" href="#https://www.racecar-classifieds.com/forsale">RACECARS FOR SALE</a></li>
             </ul>
           </div>
         </nav>
+        <div className="column">
         <div className="content">
-          <h1>The new way to track old racecars</h1>
+          <h2>The new way to track old racecars</h2>
           <p>Track everything from rebuilds to inspections, all the way to FIA HTP's. All in one place.</p>
 
         </div>
 
-        <div className="createForm">
-          <h2>Add a new car</h2>
-          <CarForm onAddCar={onAddCar} />
-        </div>
-        <div className="cars" id="carList">
-            {loading && <p>Loading cars...</p>}
-            {error && <p className="error">Error: {error}</p>}
-            {cars.length > 0 && (
-              <>
-                <h2>Racecars</h2>
-                {cars.map(car => (
-                  <CarCard key={car._id} car={car} />
-                ))}
-              </>
-            )}
+          <div className="createForm">
+            <h2>Add a new car</h2>
+            <CarForm onAddCar={onAddCar} />
           </div>
-      </div>
+    </div>
+          <div className="cars" id="carList">
+              {loading && <p>Loading cars...</p>}
+              {error && <p className="error">Error: {error}</p>}
+              {cars.length > 0 && (
+                <>
+                  <h3>Racecars</h3>
+                  {cars.map(car => (
+                    <CarCard key={car._id} car={car} />
+                  ))}
+                </>
+              )}
+            </div>
 
+      </div>
   );
 }
 
