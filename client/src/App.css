@@ -1,8 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
 body, html {
   margin: 0;
   padding: 0;
   background: white;
-  font-family: Arial, sans-serif;
+  font-family: 'Montserrat', sans-serif;
   width: 100%;
   background-image: url('./assets/faded.jpg');
 }
@@ -29,7 +30,12 @@ body, html {
   font-size: px;
 }
 .nav-link1 {
-  padding-right: 10px;;
+  padding-right: 30px;
+  color: black;
+}
+.nav-link2 {
+  padding-right: 30px;
+  color: black;
 }
 .content {
   color: black;
@@ -41,6 +47,9 @@ body, html {
   padding-right: 420px;
   margin-top: 50px;
 }
+.content .h1 {
+  font-size: smaller !important; ;
+}
 .column {
   min-width: 100%;
   display: flex;
@@ -50,7 +59,7 @@ body, html {
 .createForm {
   color: black;
   justify-content: flex-end;
-  text-align: left;
+  text-align: center;
   float: end;
   padding-left: 80px;
   margin-right: 20px;
@@ -63,9 +72,11 @@ body, html {
 .cars {
   color: black;
   position: relative;
-  padding: 50px;
+  padding: 60px;
   flex-direction: row;
   border: black 1px solid;
+  margin-right: 20px;
+  border-radius: 5px;
 }
 .carForm{
   color: black;
@@ -122,5 +133,6 @@ padding: 10px;
   padding-top: 10px !important;
 }
 .carList {
-  background-color: white;;
+  background-color: white;
+  padding-right: 10px;
 }

@@ -70,7 +70,7 @@ export default function CarForm({ onAddCar}) {
         />
       </div>
       <div className="inputBox">
-        <label htmlFor="chassisNumber">CHASSIS NUMBER  </label>
+        <label htmlFor="chassisNumber">CHASSIS   </label>
         <input
           className="typeHere"
           type="number"

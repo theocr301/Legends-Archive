@@ -60,14 +60,14 @@ function App() {
           </div>
           <div className="navbar__links">
             <ul>
-              <li><a class="nav-link1" href="#https://www.racecar-classifieds.com/">HOME</a></li>
-              <li><a class="nav-link2" href="#https://www.racecar-classifieds.com/forsale">RACECARS FOR SALE</a></li>
+              <li><a className="nav-link1" href="#https://www.racecar-classifieds.com/">HOME</a></li>
+              <li><a className="nav-link2" href="#https://www.racecar-classifieds.com/forsale">RACECARS FOR SALE</a></li>
             </ul>
           </div>
         </nav>
         <div className="column">
         <div className="content">
-          <h2>The new way to track old racecars</h2>
+          <h1>The new way to track old racecars</h1>
           <p>Track everything from rebuilds to inspections, all the way to FIA HTP's. All in one place.</p>
           <p>Legends Archive enables you to build a comprehensive history file for your car. It can be passed on during a sale, shared during the advertising phase, or just filled in and cherished</p>
         </div>
