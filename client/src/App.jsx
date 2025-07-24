@@ -77,18 +77,16 @@ function App() {
             <CarForm onAddCar={onAddCar} />
           </div>
     </div>
-          <div className="cars" id="carList">
-              {loading && <p>Loading cars...</p>}
-              {error && <p className="error">Error: {error}</p>}
-              {cars.length > 0 && (
-                <>
-                  <h3>Racecars</h3>
-                  {cars.map(car => (
-                    <CarCard key={car._id} car={car} />
-                  ))}
-                </>
-              )}
-            </div>
+    <div className="cars carList" id="carList">
+  <h3>Racecars</h3>
+  {loading && <p>Loading cars...</p>}
+  {error && <p className="error">Error: {error}</p>}
+  <div className="carCardsRow">
+    {cars.map(car => (
+      <CarCard key={car._id} car={car} />
+    ))}
+  </div>
+</div>
 
       </div>
   );
