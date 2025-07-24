@@ -5,13 +5,15 @@ body, html {
   background: white;
   font-family: 'Montserrat', sans-serif;
   width: 100%;
-  background-image: url('./assets/faded.jpg');
+  background-image: url('./assets/bosh2.jpg');
 }
 .navbar {
   color: black;
+  background-color: white;
   position: fixed;
   top: 5px;
   left: 5px;
+  width: 100%;
 }
 .navbar__links {
   position: fixed;
@@ -23,7 +25,7 @@ body, html {
 }
 .navbar__links ul {
   list-style: none;
-  padding-top: 10px;
+  padding-top: 15px;
   padding-right: 10px;
   margin: 5px;
   display: flex;
@@ -38,7 +40,7 @@ body, html {
   color: black;
 }
 .content {
-  color: black;
+  color: rgb(255, 255, 255);
   position: relative;
   top: -60px;
   width: 800px;
@@ -47,30 +49,34 @@ body, html {
   padding-right: 420px;
   margin-top: 50px;
 }
+.content {
+  font-size: large;
+}
 .content .h1 {
   font-size: smaller !important; ;
 }
 .column {
   min-width: 100%;
   display: flex;
+  padding-top: 200px;
   flex-direction: row;
   padding-bottom: 40px;
 }
 .createForm {
-  color: black;
+  color: rgb(255, 255, 255);
   justify-content: flex-end;
   text-align: center;
   float: end;
   padding-left: 80px;
   margin-right: 20px;
-  padding: 7px 30px 20px 30px;
-  border: black 1px solid;
+  padding: 5px 15px 10px 15px;
+  border: rgb(255, 255, 255) 1px solid;
   border-radius: 5px;
-  background-color: rgb(242, 242, 242);
+height: fit-content;
   min-width: fit-content;
 }
 .cars {
-  color: black;
+  color: rgb(255, 255, 255);
   position: relative;
   padding: 60px;
   flex-direction: row;
@@ -79,15 +85,16 @@ body, html {
   border-radius: 5px;
 }
 .carForm{
-  color: black;
+  color: rgb(255, 255, 255);
   padding: 10px;
   border-radius: 5px;
-  background-color: rgb(242, 242, 242);
+
   font-size: smaller;
 }
 .inputBox {
-color: black;
+color: rgb(255, 255, 255);
 padding: 10px;
+width: 100%;
 }
 .typeHere {
   color: rgb(0, 0, 0);
@@ -110,11 +117,10 @@ padding: 10px;
   gap: 20px;
 }
 .car-card {
-  color: black;
-  background-color: white;
+  color: rgb(255, 255, 255);
   padding: 10px;
   border-radius: 5px;
-  border: black 1px solid;
+  border: rgb(255, 255, 255) 1px solid;
   width: 200px;
   height: 110px;
 }
@@ -133,6 +139,7 @@ padding: 10px;
   padding-top: 10px !important;
 }
 .carList {
-  background-color: white;
+color: white;
   padding-right: 10px;
+  border: 0px;
 }

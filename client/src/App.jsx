@@ -2,6 +2,8 @@ import rccLogo from './assets/RCC.logo.avif'
 import './App.css'
 import CarForm from './components/carForm';
 import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import CarHistory from './components/carHistory';
 
 
 const API_BASE = "http://localhost:5001";
@@ -50,13 +52,11 @@ function App() {
 
 
   return (
-
+    <Router>
       <div className="App">
         <nav className="navbar">
           <div className="navbar__logo">
-
               <img src={rccLogo} alt="RCC Logo" />
-
           </div>
           <div className="navbar__links">
             <ul>
@@ -65,31 +65,42 @@ function App() {
             </ul>
           </div>
         </nav>
-        <div className="column">
-        <div className="content">
-          <h1>The new way to track old racecars</h1>
-          <p>Track everything from rebuilds to inspections, all the way to FIA HTP's. All in one place.</p>
-          <p>Legends Archive enables you to build a comprehensive history file for your car. It can be passed on during a sale, shared during the advertising phase, or just filled in and cherished</p>
-        </div>
-
-          <div className="createForm">
-            <h2>Add a new car</h2>
-            <p1>To start adding events to your car, register it here.</p1>
-            <CarForm onAddCar={onAddCar} />
-          </div>
-    </div>
-    <div className="cars carList" id="carList">
-  <h3>Recent cars</h3>
-  {loading && <p>Loading cars...</p>}
-  {error && <p className="error">Error: {error}</p>}
-  <div className="carCardsRow">
-    {cars.map(car => (
-      <CarCard key={car._id} car={car} />
-    ))}
-  </div>
-</div>
-
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <div className="column">
+                  <div className="content">
+                    <h1>The new way to track old racecars</h1>
+                      <p>Track everything from rebuilds to inspections, all the way to FIA HTP's. All in one place.</p>
+                      <p>Legends Archive enables you to build a comprehensive history file for your car. It can be passed on during a sale, shared during the advertising phase, or just filled in and cherished</p>
+                  </div>
+                  <div className="createForm">
+                    <h2>Add a new car</h2>
+                      <p1>To start adding events to your car, register it here.</p1>
+                        <CarForm onAddCar={onAddCar} />
+                  </div>
+                </div>
+                <div className="cars carList" id="carList">
+                  <h3>Recent cars</h3>
+                  {loading && <p>Loading cars...</p>}
+                  {error && <p className="error">Error: {error}</p>}
+                  <div className="carCardsRow">
+                    {cars.map(car => (
+                      <Link key={car._id} to={`/car/${car._id}`}>
+                        <CarCard car={car} />
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </>
+            }
+          />
+          <Route path="/car/:id" element={<CarHistory />} />
+        </Routes>
       </div>
+    </Router>
   );
 }
 

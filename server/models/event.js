@@ -15,9 +15,10 @@ const carSchema = new mongoose.Schema({
     required: true,
     unique: true,
     trim: true,
-  }
+  },
+  history: [historySchema],
 })
-const eventSchema = new mongoose.Schema({
+const historySchema = new mongoose.Schema({
   title: {
     type: String,
     required: true,
@@ -34,5 +35,5 @@ const eventSchema = new mongoose.Schema({
   }
 })
 
-module.exports = mongoose.model('Event', eventSchema);
+module.exports = mongoose.model('History', historySchema);
 module.exports = mongoose.model('Car', carSchema);

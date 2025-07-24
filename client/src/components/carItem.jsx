@@ -8,6 +8,11 @@ export default function CarItem({ car }) {
         {car.year}
       </p>
       <p>{car.chassisNumber}</p>
+      <div key={car._id}>
+        <link to={`/cars/${car._id}`}>
+        <p>View history</p>
+        </link>
+      </div>
     </li>
   );
 }
