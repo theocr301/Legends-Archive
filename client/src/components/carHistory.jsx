@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import HistoryForm from './historyForm';
+import './carHistory.css';
 
 const API_BASE = "http://localhost:5001";
 
@@ -26,15 +28,20 @@ function CarHistory() {
     fetchCar();
   }, [id]);
 
-  if (loading) return <p>Loading car history...</p>;
+ if (loading) return <p>Loading car history...</p>;
   if (error) return <p className="error">Error: {error}</p>;
-  if (!car) return <p>No car found.</p>;
 
   return (
-    <div className="car-history">
-      <h2>{car.name} History</h2>
-      <p>Year: {car.year}</p>
-      <p>Chassis: {car.chassisNumber}</p>
+    <div className="history-box">
+      <div className="history-form">
+        <HistoryForm carId={id} />
+      </div>
+      <div className="car-history">
+        <h2>{car.name} History</h2>
+        <p>Year: {car.year}</p>
+
+
+      </div>
     </div>
   );
 }

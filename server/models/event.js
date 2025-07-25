@@ -1,5 +1,22 @@
 const mongoose = require('mongoose');
 
+const historySchema = new mongoose.Schema({
+  title: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  date: {
+    type: Date,
+    required: true,
+  },
+  description: {
+    type: String,
+    required: true,
+    trim: true,
+  }
+})
+
 const carSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -18,22 +35,7 @@ const carSchema = new mongoose.Schema({
   },
   history: [historySchema],
 })
-const historySchema = new mongoose.Schema({
-  title: {
-    type: String,
-    required: true,
-    trim: true,
-  },
-  date: {
-    type: Date,
-    required: true,
-  },
-  description: {
-    type: String,
-    required: true,
-    trim: true,
-  }
-})
+
 
 module.exports = mongoose.model('History', historySchema);
 module.exports = mongoose.model('Car', carSchema);
