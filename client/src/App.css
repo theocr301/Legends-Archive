@@ -122,9 +122,15 @@ width: 100%;
   padding: 10px;
   border-radius: 5px;
   border: 1px solid #ccc; /* Add border for better visibility */
-  width: 200px;
-  height: auto; /* Adjust height to fit content */
+  width: 370px;
+  height: 350px; /* Adjust height to fit content */
   text-align: center; /* Center-align text */
+}
+.car-card img {
+  width: 100%; /* Make image responsive */
+  height: auto; /* Maintain aspect ratio */
+  border-radius: 5px; /* Match card border radius */
+  margin-top: -40px;
 }
 .carName {
   font-weight: bold;
@@ -138,10 +144,4 @@ width: 100%;
 color: white;
   padding-right: 10px;
   border: 0px;
-}
-.car-image {
-  width: 100%;
-  height: auto;
-  border-radius: 5px;
-  margin-bottom: 10px;
 }

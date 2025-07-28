@@ -61,10 +61,10 @@ function CarHistory() {
             className="car-image"
           />
         )}
-
+        <div className="title">
           <h1>{car.year} {car.name}</h1>
           <h3>{car.chassisNumber}</h3>
-
+        </div>
         <div className="history-form">
           <h2>Add History Event</h2>
           <HistoryForm carId={id} onHistoryAdded={handleHistoryAdded} />

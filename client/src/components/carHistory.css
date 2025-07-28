@@ -23,7 +23,10 @@
   margin-top: 40px;
   flex-direction: column;
 }
-
+.title {
+  flex-direction: column;
+  margin-top: 5px;
+}
 .car-history {
   display: inline-flex;
   background-color: #82828200;
