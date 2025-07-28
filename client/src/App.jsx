@@ -88,7 +88,7 @@ function App() {
                   {error && <p className="error">Error: {error}</p>}
                   <div className="carCardsRow">
                     {cars.map(car => (
-                      <Link key={car._id} to={`/car/${car._id}`}>
+                      <Link key={car._id} to={`/cars/${car._id}`}>
                         <CarCard car={car} />
                       </Link>
                     ))}
@@ -97,7 +97,7 @@ function App() {
               </>
             }
           />
-          <Route path="/car/:id" element={<CarHistory />} />
+          <Route path="/cars/:id" element={<CarHistory />} />
         </Routes>
       </div>
     </Router>

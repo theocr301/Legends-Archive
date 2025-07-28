@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const { Car } = require('../models/event'); // Ensure Car is imported correctly
 
 router.get('/cars', async (req, res) => {
   try {
@@ -9,7 +10,6 @@ router.get('/cars', async (req, res) => {
     res.status(500).json({ message: 'Server error' });
   }
 });
-
 
 router.post('/cars', async (req, res) => {
   const { name, year, chassisNumber } = req.body;

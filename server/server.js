@@ -22,7 +22,7 @@ app.get('/cars', async (req, res) => {
 app.get('/cars/:id', async (req, res) => {
   try {
     const { id } = req.params;
-    const car = await Car.findById(id).populate('history');
+    const car = await Car.findById(id);
     if (!car) {
       return res.status(404).json({ message: 'Car not found' });
     }
@@ -60,6 +60,33 @@ app.post('/cars/:id/history', async (req, res) => {
     await car.save();
 
     res.status(201).json(car);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+app.delete('/cars/:id/history/:eventId', async (req, res) => {
+  try {
+    const { id, eventId } = req.params;
+    const car = await Car.findById(id);
+    if (!car) {
+      return res.status(404).json({ message: 'Car not found' });
+    }
+
+    console.log('eventId:', eventId);
+    console.log('car.history:', car.history.map(h => h._id.toString()));
+
+    const eventIndex = car.history.findIndex(
+      (h) => h._id.toString() === eventId
+    );
+    if (eventIndex === -1) {
+      return res.status(404).json({ message: 'History event not found' });
+    }
+
+    car.history.splice(eventIndex, 1);
+    await car.save();
+
+    res.status(200).json({ message: 'History event deleted', car });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }

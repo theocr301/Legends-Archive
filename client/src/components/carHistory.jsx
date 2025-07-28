@@ -33,7 +33,22 @@ function CarHistory() {
     await fetchCar();
   }
 
-  if (loading) return <p>No history has been found for this car...</p>;
+  async function handleDeleteHistory(eventId) {
+    try {
+      const response = await fetch(`${API_BASE}/cars/${id}/history/${eventId}`, {
+        method: 'DELETE',
+      });
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.message);
+      }
+      await fetchCar();
+    } catch (err) {
+      setError(err.message);
+    }
+  }
+
+  if (loading) return <p>Loading history...</p>;
   if (error) return <p className="error">Error: {error}</p>;
 
   return (
@@ -45,15 +60,17 @@ function CarHistory() {
         <HistoryForm carId={id} onHistoryAdded={handleHistoryAdded} />
       </div>
       <div className="car-history">
-
-          {car.history.map((event, index) => (
-            <li key={index}>
-              <h3>{event.title}</h3>
-              <p>{new Date(event.date).toLocaleDateString()}</p>
-              <p>{event.description}</p>
-            </li>
-          ))}
-        
+        {car.history.map((event) => (
+          <li className="history-list" key={event._id}>
+            <h3>{event.title}</h3>
+            <button className="delete-button"
+            onClick={() => handleDeleteHistory(event._id)}>
+              Delete
+            </button>
+            <p>{new Date(event.date).toLocaleDateString()}</p>
+            <p>{event.description}</p>
+          </li>
+        ))}
       </div>
     </div>
   );
