@@ -53,11 +53,22 @@ function CarHistory() {
 
   return (
     <div className="history-container">
-      <h1>{car.year} {car.name}</h1>
-      <h3>{car.chassisNumber}</h3>
-      <div className="history-form">
-        <h2>Add History Event</h2>
-        <HistoryForm carId={id} onHistoryAdded={handleHistoryAdded} />
+      <div className="car-details">
+        {car.imageUrl && (
+          <img
+            src={`http://localhost:5001${car.imageUrl}`}
+            alt={car.name}
+            className="car-image"
+          />
+        )}
+
+          <h1>{car.year} {car.name}</h1>
+          <h3>{car.chassisNumber}</h3>
+
+        <div className="history-form">
+          <h2>Add History Event</h2>
+          <HistoryForm carId={id} onHistoryAdded={handleHistoryAdded} />
+        </div>
       </div>
       <div className="car-history">
         {car.history.map((event) => (

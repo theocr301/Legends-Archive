@@ -1,34 +1,59 @@
+.car-details {
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+  margin-top: -530px;
+  gap: 30px;
+  padding: 35px;
+
+}
 .history-container {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  padding: 20px;
-}
 
+}
 .history-form {
   background-color: #aaaaaa00;
-  padding: 15px;
+  width: 400px;
+  padding-left: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  display: block;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  margin-top: 40px;
+  flex-direction: column;
 }
 
 .car-history {
+  display: inline-flex;
   background-color: #82828200;
-  padding: 15px;
-  border-radius: 5px;
-  flex-direction: row;
+  position: fixed;
+  margin-top: 50px;
+  margin-left: 40px;
+  gap: 30px;
 }
-
+.history-list {
+  background-color: #aaaaaa00;
+  width: 200px;
+  text-align: center;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
 .car-history ul {
   list-style: none;
   padding: 0;
 }
 
 .car-history li {
+  position: relative;
+
+}
+.car-image {
+  width: 700px;
+  height: auto;
+  border-radius: 5px;
+  padding-top: 40px;
   margin-bottom: 10px;
-  border-bottom: 1px solid #ddd;
-  padding-bottom: 10px;
-  flex-direction: row;
 }
