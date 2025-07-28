@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 const API_BASE = "http://localhost:5001";
 
-export default function HistoryForm({ carId }) {
+export default function HistoryForm({ carId, onHistoryAdded }) {
   const [form, setForm] = useState({
     title: '',
     date: '',
@@ -43,10 +43,12 @@ export default function HistoryForm({ carId }) {
           date: '',
           description: '',
         });
+        if (onHistoryAdded) onHistoryAdded();
       } else {
         alert('Error adding history event');
       }
     } catch (err) {
+      console.error('Network error:', err);
       alert('Network error');
     }
     setSubmitting(false);

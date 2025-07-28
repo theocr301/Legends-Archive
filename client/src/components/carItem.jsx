@@ -1,3 +1,6 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+
 export default function CarItem({ car }) {
   return (
     <li className="car-card">
@@ -9,9 +12,9 @@ export default function CarItem({ car }) {
       </p>
       <p>{car.chassisNumber}</p>
       <div key={car._id}>
-        <link to={`/cars/${car._id}`}>
+        <Link to={`/cars/${car._id}`}>
         <p>View history</p>
-        </link>
+        </Link>
       </div>
     </li>
   );

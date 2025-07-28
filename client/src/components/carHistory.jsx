@@ -11,36 +11,49 @@ function CarHistory() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    async function fetchCar() {
-      setLoading(true);
-      try {
-        const response = await fetch(`${API_BASE}/cars/${id}`);
-        if (!response.ok) throw new Error("Error fetching car history");
-        const data = await response.json();
-        setCar(data);
-        setLoading(false);
-      } catch (err) {
-        setError(err.message);
-        setLoading(false);
-      }
+  const fetchCar = React.useCallback(async () => {
+    setLoading(true);
+    try {
+      const response = await fetch(`${API_BASE}/cars/${id}`);
+      if (!response.ok) throw new Error("Error fetching car history");
+      const data = await response.json();
+      setCar(data);
+      setLoading(false);
+    } catch (err) {
+      setError(err.message);
+      setLoading(false);
     }
-    fetchCar();
   }, [id]);
 
- if (loading) return <p>Loading car history...</p>;
+  useEffect(() => {
+    fetchCar();
+  }, [fetchCar]);
+
+  async function handleHistoryAdded() {
+    await fetchCar();
+  }
+
+  if (loading) return <p>No history has been found for this car...</p>;
   if (error) return <p className="error">Error: {error}</p>;
 
   return (
-    <div className="history-box">
+    <div className="history-container">
+      <h1>{car.year} {car.name}</h1>
+      <h3>{car.chassisNumber}</h3>
       <div className="history-form">
-        <HistoryForm carId={id} />
+        <h2>Add History Event</h2>
+        <HistoryForm carId={id} onHistoryAdded={handleHistoryAdded} />
       </div>
       <div className="car-history">
-        <h2>{car.name} History</h2>
-        <p>Year: {car.year}</p>
 
-
+          {car.history.map((event, index) => (
+            <li key={index}>
+              <h3>{event.title}</h3>
+              <p>{new Date(event.date).toLocaleDateString()}</p>
+              <p>{event.description}</p>
+            </li>
+          ))}
+        
       </div>
     </div>
   );

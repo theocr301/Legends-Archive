@@ -15,7 +15,7 @@ const historySchema = new mongoose.Schema({
     required: true,
     trim: true,
   }
-})
+});
 
 const carSchema = new mongoose.Schema({
   name: {
@@ -34,8 +34,9 @@ const carSchema = new mongoose.Schema({
     trim: true,
   },
   history: [historySchema],
-})
+});
 
+const History = mongoose.model('History', historySchema);
+const Car = mongoose.model('Car', carSchema);
 
-module.exports = mongoose.model('History', historySchema);
-module.exports = mongoose.model('Car', carSchema);
+module.exports = { History, Car };
