@@ -1,4 +1,3 @@
-//import { set } from 'mongoose';
 import { useState } from 'react';
 
 
@@ -7,15 +6,17 @@ export default function CarForm({ onAddCar}) {
     name: '',
     year: '',
     chassisNumber: '',
+    image: null,
   });
 
   const [submitting, setSubmitting] = useState(false);
 
   function handleChange(e) {
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value,
-    });
+    if (e.target.name === 'image') {
+      setForm({ ...form, image: e.target.files[0] });
+    } else {
+      setForm({ ...form, [e.target.name]: e.target.value });
+    }
   }
   async function handleSubmit(e) {
     e.preventDefault();
@@ -25,19 +26,30 @@ export default function CarForm({ onAddCar}) {
       return;
     }
     setSubmitting(true);
-    const result = await onAddCar({
-      name: form.name,
-      year: form.year,
-      chassisNumber: form.chassisNumber,
-    });
-    setSubmitting(false);
+    const formData = new FormData();
+    formData.append('name', form.name);
+    formData.append('year', form.year);
+    formData.append('chassisNumber', form.chassisNumber);
+    if (form.image) formData.append('image', form.image);
 
-    if (result.success) {
-      setForm({
-        name: '',
-        year: '',
-        chassisNumber: '',
-      })
+    try {
+      const result = await onAddCar(formData);
+      setSubmitting(false);
+
+      if (result.success) {
+        setForm({
+          name: '',
+          year: '',
+          chassisNumber: '',
+          image: null,
+        });
+      } else {
+        alert(result.message || 'Error adding car');
+      }
+    } catch (err) {
+      console.error('Error submitting form:', err);
+      alert('Error submitting form');
+      setSubmitting(false);
     }
   }
   return (
@@ -81,6 +93,18 @@ export default function CarForm({ onAddCar}) {
           value={form.chassisNumber}
           onChange={handleChange}
           required
+          disabled={submitting}
+        />
+      </div>
+      <div className="inputBox">
+        <label htmlFor="image">IMAGE  </label>
+        <input
+          className="typeHere"
+          type="file"
+          name="image"
+          id="image"
+          accept="image/*"
+          onChange={handleChange}
           disabled={submitting}
         />
       </div>

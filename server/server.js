@@ -1,8 +1,12 @@
 const express = require('express');
 const mongoose = require('mongoose');
+
 const cors = require('cors');
 const dotenv = require('dotenv');
 const { Car } = require('./models/event');
+
+const multer = require('multer');
+const upload = multer({ dest: 'uploads/' });
 
 dotenv.config();
 
@@ -32,15 +36,21 @@ app.get('/cars/:id', async (req, res) => {
   }
 });
 
-app.post('/cars', async (req, res) => {
+app.post('/cars', upload.single('image'), async (req, res) => {
   try {
-    const { name, year, chassisNumber } = req.body;
-    const car = await Car.create({ name, year, chassisNumber });
+    const { name, year, chassisNumber } = req.body; // req.body is populated by multer
+    let imageUrl = null;
+    if (req.file) {
+      imageUrl = `/uploads/${req.file.filename}`;
+    }
+    const car = await Car.create({ name, year, chassisNumber, imageUrl });
     res.status(201).json(car);
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
 });
+
+app.use('/uploads', express.static('uploads'));
 
 app.post('/cars/:id/history', async (req, res) => {
   try {

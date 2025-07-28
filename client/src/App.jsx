@@ -35,8 +35,7 @@ function App() {
     try {
       const res = await fetch(`${API_BASE}/cars`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(carData),
+        body: carData,
       });
       if (res.ok) {
         fetchCars();
@@ -107,11 +106,18 @@ function App() {
 function CarCard({ car }) {
   return (
     <div className="car-card">
+      {car.imageUrl && (
+        <img
+          src={`http://localhost:5001${car.imageUrl}`}
+          alt={car.name}
+          className="car-image"
+        />
+      )}
       <div className="carName">{car.name}</div>
       <div className="carYear">{car.year}</div>
       <div className="carChassis">#{car.chassisNumber}</div>
     </div>
-  )
+  );
 }
 
 export default App

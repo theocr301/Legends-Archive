@@ -5,6 +5,14 @@ export default function CarItem({ car }) {
   return (
     <li className="car-card">
 
+      {car.imageUrl && (
+        <img
+          src={`http://localhost:5001${car.imageUrl}`}
+          alt={car.name}
+          className="car-image"
+        />
+      )}
+
       <h2>{car.name}</h2>
 
       <p>

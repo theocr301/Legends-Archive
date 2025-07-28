@@ -33,6 +33,10 @@ const carSchema = new mongoose.Schema({
     unique: true,
     trim: true,
   },
+  imageUrl: {
+    type: String,
+    default: null,
+  },
   history: [historySchema],
 });
 
