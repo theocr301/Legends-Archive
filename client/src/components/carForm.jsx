@@ -54,60 +54,68 @@ export default function CarForm({ onAddCar}) {
   }
   return (
     <form onSubmit={handleSubmit} className="carForm">
-      <div className="inputBox">
-        <label htmlFor="name">NAME  </label>
-        <input
-          className="typeHere"
-          type="text"
-          name="name"
-          id="name"
-          placeholder="Make and model..."
-          value={form.name}
-          onChange={handleChange}
-          required
-          disabled={submitting}
-        />
-      </div>
-      <div className="inputBox">
-        <label htmlFor="year">YEAR  </label>
-        <input
-          className="typeHere"
-          type="number"
-          name="year"
-          id="year"
-          placeholder="Build year..."
-          value={form.year}
-          onChange={handleChange}
-          required
-          disabled={submitting}
-        />
-      </div>
-      <div className="inputBox">
-        <label htmlFor="chassisNumber">CHASSIS   </label>
-        <input
-          className="typeHere"
-          type="text"
-          name="chassisNumber"
-          id="chassisNumber"
-          placeholder="Chassis number..."
-          value={form.chassisNumber}
-          onChange={handleChange}
-          required
-          disabled={submitting}
-        />
-      </div>
-      <div className="inputBox">
-        <label htmlFor="image">IMAGE  </label>
-        <input
-          className="typeHere"
-          type="file"
-          name="image"
-          id="image"
-          accept="image/*"
-          onChange={handleChange}
-          disabled={submitting}
-        />
-      </div>
+      <h2>Add a new car</h2>
+      <p>To start adding events to your car, add it here.</p>
+      <label>
+        Name
+          <div className="inputBox">
+            <input
+              className="typeHere"
+              type="text"
+              name="name"
+              id="name"
+              value={form.name}
+              onChange={handleChange}
+              required
+              disabled={submitting}
+            />
+          </div>
+      </label>
+      <label>
+        Build year
+          <div className="inputBox">
+            <input
+              className="typeHere"
+              type="number"
+              name="year"
+              id="year"
+              value={form.year}
+              onChange={handleChange}
+              required
+              disabled={submitting}
+            />
+          </div>
+      </label>
+      <label>
+        Chassis number
+          <div className="inputBox">
+            <input
+              className="typeHere"
+              type="text"
+              name="chassisNumber"
+              id="chassisNumber"
+              value={form.chassisNumber}
+              onChange={handleChange}
+              required
+              disabled={submitting}
+            />
+          </div>
+      </label>
+      <label>
+        Image
+        <div className="inputBox">
+          <input
+            className="typeHere"
+            type="file"
+            name="image"
+            id="image"
+            accept="image/*"
+            onChange={handleChange}
+            disabled={submitting}
+          />
+        </div>
+      </label>
+
       <button className="button" type="submit" disabled={submitting}>
         {submitting ? "Adding..." : "Create"}
       </button>

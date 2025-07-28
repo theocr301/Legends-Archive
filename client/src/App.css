@@ -74,7 +74,9 @@ body, html {
   border-radius: 5px;
 height: fit-content;
   min-width: fit-content;
+
 }
+
 .cars {
   color: rgb(255, 255, 255);
   position: relative;
@@ -88,24 +90,34 @@ height: fit-content;
   color: rgb(255, 255, 255);
   padding: 10px;
   border-radius: 5px;
-
+  text-align: left;
   font-size: smaller;
 }
-.inputBox {
-color: rgb(255, 255, 255);
-padding: 10px;
-width: 100%;
+.carForm h2 {
+  margin-bottom: 10px;
+  margin-top: 0px;
+  text-align: center !important;
 }
+.carForm p {
+  margin-bottom: 10px;
+  text-align: center !important;
+}
+
 .typeHere {
+  width: 90%;
   color: rgb(0, 0, 0);
-  background-color: white;
-  padding: 2px;
+  background-color: rgb(255, 255, 255);
+  padding: 5px;
+  margin-top: 3px;
+  margin-bottom: 3px;
   border-radius: 4px;
 }
 .button {
   color: rgb(0, 0, 0);
-  background-color: rgb(233, 233, 233);
-  justify-content: center;
+  background-color: rgb(255, 255, 255);
+  margin-left: 105px;
+  margin-top: 10px;
+
 }
 .button:hover {
   background-color: rgb(157, 157, 157);
