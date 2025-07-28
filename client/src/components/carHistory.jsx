@@ -17,6 +17,7 @@ function CarHistory() {
       const response = await fetch(`${API_BASE}/cars/${id}`);
       if (!response.ok) throw new Error("Error fetching car history");
       const data = await response.json();
+      console.log('Fetched car:', data); // Add this line
       setCar(data);
       setLoading(false);
     } catch (err) {
@@ -50,6 +51,7 @@ function CarHistory() {
 
   if (loading) return <p>Loading history...</p>;
   if (error) return <p className="error">Error: {error}</p>;
+  if (!car) return null;
 
   return (
     <div className="history-container">
@@ -71,19 +73,25 @@ function CarHistory() {
         </div>
       </div>
       <div className="car-history">
-        {car.history.map((event) => (
+      {[...car.history]
+        .sort((a, b) => new Date(b.date) - new Date(a.date))
+        .map((event) => (
           <li className="history-list" key={event._id}>
             <h3>{event.title}</h3>
-            <button className="delete-button"
-            onClick={() => handleDeleteHistory(event._id)}>
-              Delete
-            </button>
+
             <p>{new Date(event.date).toLocaleDateString()}</p>
             <p>{event.description}</p>
+            <button className="delete-button"
+              onClick={() => handleDeleteHistory(event._id)}>
+              Delete
+            </button>
           </li>
         ))}
-      </div>
+      {car.history.length === 0 && (
+        <p>No history events available for this car.</p>
+      )}
     </div>
+  </div>
   );
 }
 

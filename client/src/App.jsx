@@ -86,7 +86,9 @@ function App() {
                   {loading && <p>Loading cars...</p>}
                   {error && <p className="error">Error: {error}</p>}
                   <div className="carCardsRow">
-                    {cars.map(car => (
+                  {[...cars]
+                     .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+                     .map(car => (
                       <Link key={car._id} to={`/cars/${car._id}`}>
                         <CarCard car={car} />
                       </Link>

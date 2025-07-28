@@ -37,8 +37,11 @@ const carSchema = new mongoose.Schema({
     type: String,
     default: null,
   },
-  history: [historySchema],
-});
+  history: {
+    type: [historySchema],
+    default: [],
+  }, // Ensure history is always an array
+}, { timestamps: true });
 
 const History = mongoose.model('History', historySchema);
 const Car = mongoose.model('Car', carSchema);

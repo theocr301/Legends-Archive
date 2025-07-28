@@ -16,7 +16,7 @@ app.use(express.json());
 
 app.get('/cars', async (req, res) => {
   try {
-    const cars = await Car.find();
+    const cars = await Car.find().sort({ createdAt: -1 }); // Sort by createdAt descending
     res.json(cars);
   } catch (err) {
     res.status(500).json({ message: err.message });

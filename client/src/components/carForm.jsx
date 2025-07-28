@@ -41,7 +41,7 @@ export default function CarForm({ onAddCar}) {
           name: '',
           year: '',
           chassisNumber: '',
-          image: null,
+          image: '',
         });
       } else {
         alert(result.message || 'Error adding car');
