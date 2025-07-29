@@ -76,7 +76,7 @@ function CarHistory() {
       {[...car.history]
         .sort((a, b) => new Date(b.date) - new Date(a.date))
         .map((event) => (
-          <li className="history-list" key={event._id}>
+          <li className="history-list" key={event._id} >
             <h3>{event.title}</h3>
 
             <p>{new Date(event.date).toLocaleDateString()}</p>
@@ -88,7 +88,7 @@ function CarHistory() {
           </li>
         ))}
       {car.history.length === 0 && (
-        <p>No history events available for this car.</p>
+        <p>Start adding events to view the history for this car!</p>
       )}
     </div>
   </div>

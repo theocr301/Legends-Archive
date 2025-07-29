@@ -59,7 +59,7 @@ function App() {
           </div>
           <div className="navbar__links">
             <ul>
-              <li><a className="nav-link1" href="#https://www.racecar-classifieds.com/">HOME</a></li>
+              <li><a className="nav-link1" href="http://localhost:5173/">HOME</a></li>
               <li><a className="nav-link2" href="#https://www.racecar-classifieds.com/forsale">RACECARS FOR SALE</a></li>
             </ul>
           </div>

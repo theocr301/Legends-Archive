@@ -57,13 +57,12 @@ export default function HistoryForm({ carId, onHistoryAdded }) {
   return (
     <form onSubmit={handleSubmit} className="historyForm">
       <div className="inputBox">
-        <label htmlFor="title">TITLE  </label>
+        <label htmlFor="title">Event title  </label>
         <input
           className="typeHere"
           type="text"
           name="title"
           id="title"
-          placeholder="Event title..."
           value={form.title}
           onChange={handleChange}
           required
@@ -71,13 +70,12 @@ export default function HistoryForm({ carId, onHistoryAdded }) {
         />
       </div>
       <div className="inputBox">
-        <label htmlFor="date">DATE  </label>
+        <label htmlFor="date">Event date  </label>
         <input
           className="typeHere"
           type="date"
           name="date"
           id="date"
-          placeholder="Event date..."
           value={form.date}
           onChange={handleChange}
           required
@@ -85,13 +83,12 @@ export default function HistoryForm({ carId, onHistoryAdded }) {
         />
       </div>
       <div className="inputBox">
-        <label htmlFor="description">DESCRIPTION   </label>
+        <label htmlFor="description">Description  </label>
         <input
           className="typeHere"
           type="text"
           name="description"
           id="description"
-          placeholder="Event details here..."
           value={form.description}
           onChange={handleChange}
           required
