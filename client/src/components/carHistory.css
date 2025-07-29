@@ -2,7 +2,7 @@
   position: fixed;
   display: flex;
   flex-direction: row;
-  margin-top: -530px;
+  margin-top: -630px;
   gap: 30px;
   padding: 35px;
 
@@ -50,19 +50,31 @@
   display: inline-flex;
   background-color: #82828200;
   position: fixed;
-  margin-top: 50px;
+  margin-top: 0px;
   margin-left: 40px;
   gap: 30px;
+  border-top: 3px solid #ccc;
+  border-width: 80%;
 }
 .history-list {
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   background-color: #aaaaaa00;
   width: 200px;
   text-align: center;
   padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+
+
   margin-bottom: 10px;
-  display: block;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+
+}
+.line {
+  font-weight: bolder;
+  margin-top: -15px;
 }
 .car-history ul {
   list-style: none;
@@ -72,6 +84,19 @@
 .car-history li {
   position: relative;
 
+}
+.car-history button {
+  margin-top: auto; /* Push the button to the bottom */
+  padding: 5px 10px;
+  background-color: #c9c9c9;
+  color: rgb(0, 0, 0);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.car-history button:hover {
+  background-color: #cfcfcf;
 }
 .car-image {
   width: 700px;
@@ -83,6 +108,6 @@
 p {
   color: rgb(255, 255, 255);
   font-size: large;
-  font-weight: bold;
-  justify-content: center;
+
+ justify-content: center;
 }
