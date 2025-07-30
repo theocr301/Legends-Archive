@@ -1,4 +1,4 @@
-import rccLogo from './assets/RCC.logo.avif'
+import rccLogo from './assets/finallogo.jpg'
 import './App.css'
 import CarForm from './components/carForm';
 import React, { useState, useEffect } from 'react';

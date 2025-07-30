@@ -72,19 +72,22 @@ function CarHistory() {
         </div>
       </div>
       <div className="car-history">
-        {car.history.map((event) => (
-          <li className="history-list" key={event._id}>
-            <div className="line">|</div>
-            <h3>{event.title}</h3>
-
-            <p>{new Date(event.date).toLocaleDateString()}</p>
-            <p>{event.description}</p>
-            <button className="delete-button"
-            onClick={() => handleDeleteHistory(event._id)}>
-              Delete
-            </button>
-          </li>
-        ))}
+        {[...car.history]
+          .sort((a, b) => new Date(a.date) - new Date(b.date)) // Sort by date descending
+          .map((event) => (
+            <li className="history-list" key={event._id}>
+              <div className="line">|</div>
+              <h3>{event.title}</h3>
+              <p>{new Date(event.date).toLocaleDateString()}</p>
+              <p>{event.description}</p>
+              <button
+                className="delete-button"
+                onClick={() => handleDeleteHistory(event._id)}
+              >
+                Delete
+              </button>
+            </li>
+          ))}
       </div>
     </div>
   );

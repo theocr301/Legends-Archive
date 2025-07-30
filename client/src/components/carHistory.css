@@ -3,20 +3,27 @@
   display: flex;
   flex-direction: row;
   margin-top: -630px;
-  gap: 30px;
+  gap: 40px;
   padding: 35px;
 
 }
+.navbar {
+  top: 0px;
+}
 .history-container {
+  margin-top: 655px;
+  padding: 10px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 10px;
+
 
 }
 .history-form {
   background-color: #aaaaaa00;
   width: 400px;
   padding-left: 20px;
+  padding-top: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
   display: flex;
@@ -36,6 +43,7 @@
 }
 .inputBox {
   display: flex;
+  width: 96%;
   flex-direction: column;
   margin-bottom: 10px;
   height: fit-content;
@@ -48,29 +56,45 @@
 }
 .car-history {
   display: inline-flex;
+  flex-direction: row;
   background-color: #82828200;
-  position: fixed;
-  margin-top: 0px;
+  position: relative;
+  margin-top: 1px;
   margin-left: 40px;
   gap: 30px;
+  height: fit-content;
   border-top: 3px solid #ccc;
-  border-width: 80%;
+  overflow-x: auto;
+  max-width: 100%;
+  white-space: nowrap;
 }
 .history-list {
-
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start; /* Align items at the top */
+  gap: 10px; /* Add spacing between elements */
   background-color: #aaaaaa00;
   width: 200px;
+  height: auto; /* Allow height to adjust dynamically based on content */
   text-align: center;
-  padding: 10px;
-
-
-  margin-bottom: 10px;
+  padding: 15px; /* Add padding for better spacing */
+  word-wrap: break-word; /* Ensure long words break to the next line */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: visible; /* Allow content to expand without being cut off */
+}
 
+.history-list h3 {
+  margin: 10px 0; /* Add spacing around the title */
+  font-size: 1.2em; /* Adjust font size for better readability */
+  white-space: normal; /* Allow text to wrap */
+}
 
+.history-list p {
+  margin: 5px 0; /* Add spacing between paragraphs */
+  font-size: 0.9em; /* Adjust font size for better readability */
+  line-height: 1.4; /* Add line height for better spacing */
+  white-space: normal; /* Allow text to wrap */
+  word-wrap: break-word; /* Ensure long words wrap properly */
 }
 .line {
   font-weight: bolder;
@@ -108,6 +132,5 @@
 p {
   color: rgb(255, 255, 255);
   font-size: large;
-
- justify-content: center;
+  justify-content: center;
 }
