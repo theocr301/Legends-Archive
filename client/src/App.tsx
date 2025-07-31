@@ -2,7 +2,7 @@ import rccLogo from './assets/finallogo.jpg';
 import './App.css';
 import CarForm from './components/carForm';
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'regitact-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import CarHistory from './components/carHistory';
 
 const API_BASE = "http://localhost:5001";
