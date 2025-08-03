@@ -1,9 +1,20 @@
-import { useState } from 'react';
+import { useState, ChangeEvent, FormEvent } from 'react';
 
 const API_BASE = "http://localhost:5001";
 
-export default function HistoryForm({ carId, onHistoryAdded }) {
-  const [form, setForm] = useState({
+type HistoryFormProps = {
+  carId: string;
+  onHistoryAdded?: () => void;
+};
+
+type HistoryFormData = {
+  title: string;
+  date: string;
+  description: string;
+};
+
+export default function HistoryForm({ carId, onHistoryAdded }: HistoryFormProps) {
+  const [form, setForm] = useState<HistoryFormData>({
     title: '',
     date: '',
     description: '',
@@ -11,14 +22,14 @@ export default function HistoryForm({ carId, onHistoryAdded }) {
 
   const [submitting, setSubmitting] = useState(false);
 
-  function handleChange(e) {
+  function handleChange(e: ChangeEvent<HTMLInputElement>) {
     setForm({
       ...form,
       [e.target.name]: e.target.value,
     });
   }
 
-  async function handleSubmit(e) {
+  async function handleSubmit(e: FormEvent) {
     e.preventDefault();
 
     if (!form.title || !form.date || !form.description) {
@@ -37,12 +48,9 @@ export default function HistoryForm({ carId, onHistoryAdded }) {
           description: form.description,
         }),
       });
+
       if (res.ok) {
-        setForm({
-          title: '',
-          date: '',
-          description: '',
-        });
+        setForm({ title: '', date: '', description: '' });
         if (onHistoryAdded) onHistoryAdded();
       } else {
         alert('Error adding history event');
@@ -57,7 +65,7 @@ export default function HistoryForm({ carId, onHistoryAdded }) {
   return (
     <form onSubmit={handleSubmit} className="historyForm">
       <div className="inputBox">
-        <label htmlFor="title">Event title  </label>
+        <label htmlFor="title">Event title</label>
         <input
           className="typeHere"
           type="text"
@@ -70,7 +78,7 @@ export default function HistoryForm({ carId, onHistoryAdded }) {
         />
       </div>
       <div className="inputBox">
-        <label htmlFor="date">Event date  </label>
+        <label htmlFor="date">Event date</label>
         <input
           className="typeHere"
           type="date"
@@ -83,7 +91,7 @@ export default function HistoryForm({ carId, onHistoryAdded }) {
         />
       </div>
       <div className="inputBox">
-        <label htmlFor="description">Description  </label>
+        <label htmlFor="description">Description</label>
         <input
           className="typeHere"
           type="text"
