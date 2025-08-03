@@ -1,26 +1,47 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import HistoryForm from './historyForm';
 import './carHistory.css';
 
 const API_BASE = "http://localhost:5001";
 
-function CarHistory() {
-  const { id } = useParams();
-  const [car, setCar] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+// Define types
+interface HistoryEvent {
+  _id: string;
+  title: string;
+  description: string;
+  date: string;
+}
 
-  const fetchCar = React.useCallback(async () => {
+interface Car {
+  _id: string;
+  name: string;
+  year: number;
+  chassisNumber: string;
+  imageUrl?: string;
+  history: HistoryEvent[];
+}
+
+interface RouteParams {
+  id: string;
+}
+
+function CarHistory() {
+  const { id } = useParams() as { id: string };
+  const [car, setCar] = useState<Car | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+
+  const fetchCar = useCallback(async () => {
     setLoading(true);
     try {
       const response = await fetch(`${API_BASE}/cars/${id}`);
       if (!response.ok) throw new Error("Error fetching car history");
-      const data = await response.json();
+      const data: Car = await response.json();
       setCar(data);
-      setLoading(false);
-    } catch (err) {
-      setError(err.message);
+    } catch (err: any) {
+      setError(err.message || 'Unknown error');
+    } finally {
       setLoading(false);
     }
   }, [id]);
@@ -29,11 +50,11 @@ function CarHistory() {
     fetchCar();
   }, [fetchCar]);
 
-  async function handleHistoryAdded() {
+  async function handleHistoryAdded(): Promise<void> {
     await fetchCar();
   }
 
-  async function handleDeleteHistory(eventId) {
+  async function handleDeleteHistory(eventId: string): Promise<void> {
     try {
       const response = await fetch(`${API_BASE}/cars/${id}/history/${eventId}`, {
         method: 'DELETE',
@@ -43,19 +64,18 @@ function CarHistory() {
         throw new Error(error.message);
       }
       await fetchCar();
-    } catch (err) {
-      setError(err.message);
+    } catch (err: any) {
+      setError(err.message || 'Unknown error');
     }
   }
 
-
- if (loading) return <p>Loading history...</p>;
- if (error) return <p className="error">Error: {error}</p>;
+  if (loading) return <p>Loading history...</p>;
+  if (error) return <p className="error">Error: {error}</p>;
 
   return (
     <div className="history-container">
       <div className="car-details">
-        {car.imageUrl && (
+        {car?.imageUrl && (
           <img
             src={`http://localhost:5001${car.imageUrl}`}
             alt={car.name}
@@ -63,17 +83,17 @@ function CarHistory() {
           />
         )}
         <div className="title">
-          <h1>{car.year} {car.name}</h1>
-          <h3>{car.chassisNumber}</h3>
+          <h1>{car?.year} {car?.name}</h1>
+          <h3>{car?.chassisNumber}</h3>
         </div>
         <div className="history-form">
           <h2>Add History Event</h2>
-          <HistoryForm carId={id} onHistoryAdded={handleHistoryAdded} />
+          <HistoryForm carId={id!} onHistoryAdded={handleHistoryAdded} />
         </div>
       </div>
       <div className="car-history">
-        {[...car.history]
-          .sort((a, b) => new Date(a.date) - new Date(b.date)) // Sort by date descending
+        {[...(car?.history || [])]
+          .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
           .map((event) => (
             <li className="history-list" key={event._id}>
               <div className="line">|</div>

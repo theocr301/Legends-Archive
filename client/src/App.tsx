@@ -1,28 +1,45 @@
-import rccLogo from './assets/finallogo.jpg'
-import './App.css'
+import rccLogo from './assets/finallogo.jpg';
+import './App.css';
 import CarForm from './components/carForm';
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import CarHistory from './components/carHistory';
 
-
 const API_BASE = "http://localhost:5001";
 
-function App() {
-  const [cars, setCars] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+interface Car {
+  _id: string;
+  name: string;
+  year: number;
+  chassisNumber: string;
+  imageUrl?: string;
+  createdAt: string;
+}
 
-  async function fetchCars() {
+interface AddCarResult {
+  success: boolean;
+  message?: string;
+}
+
+interface CarCardProps {
+  car: Car;
+}
+
+function App() {
+  const [cars, setCars] = useState<Car[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+
+  async function fetchCars(): Promise<void> {
     setLoading(true);
     try {
       const response = await fetch(`${API_BASE}/cars`);
       if (!response.ok) throw new Error("Error fetching cars");
-      const data = await response.json();
+      const data: Car[] = await response.json();
       setCars(data);
-      setLoading(false);
-    } catch (err) {
-      setError(err.message);
+    } catch (err: any) {
+      setError(err.message || 'Unknown error');
+    } finally {
       setLoading(false);
     }
   }
@@ -31,35 +48,34 @@ function App() {
     fetchCars();
   }, []);
 
-  async function onAddCar(carData) {
+  async function onAddCar(carData: FormData): Promise<AddCarResult> {
     try {
       const res = await fetch(`${API_BASE}/cars`, {
         method: "POST",
         body: carData,
       });
       if (res.ok) {
-        fetchCars();
+        await fetchCars();
         return { success: true };
       } else {
         const error = await res.json();
         return { success: false, message: error.message };
       }
-    } catch (err) {
-      return { success: false, message: err.message };
+    } catch (err: any) {
+      return { success: false, message: err.message || 'Unknown error' };
     }
   }
-
 
   return (
     <Router>
       <div className="App">
         <nav className="navbar">
           <div className="navbar__logo">
-              <img src={rccLogo} alt="RCC Logo" />
+            <img src={rccLogo} alt="RCC Logo" />
           </div>
           <div className="navbar__links">
             <ul>
-              <li><a className="nav-link1" href="http://localhost:5173/">HOME</a></li>
+              <li><a className="nav-link1" href="/">HOME</a></li>
               <li><a className="nav-link2" href="https://www.racecar-classifieds.com/" target="_blank" rel="noopener noreferrer">RACECARS FOR SALE</a></li>
             </ul>
           </div>
@@ -72,8 +88,8 @@ function App() {
                 <div className="column">
                   <div className="content">
                     <h1>The new way to track old racecars</h1>
-                      <p>Track everything from rebuilds to inspections, all the way to FIA HTP's. All in one place.</p>
-                      <p>Legends Archive enables you to build a comprehensive history file for your car. It can be passed on during a sale, shared during the advertising phase, or just filled in and cherished</p>
+                    <p>Track everything from rebuilds to inspections, all the way to FIA HTP's. All in one place.</p>
+                    <p>Legends Archive enables you to build a comprehensive history file for your car. It can be passed on during a sale, shared during the advertising phase, or just filled in and cherished</p>
                   </div>
                   <div className="createForm">
                     <CarForm onAddCar={onAddCar} />
@@ -84,13 +100,13 @@ function App() {
                   {loading && <p>Loading cars...</p>}
                   {error && <p className="error">Error: {error}</p>}
                   <div className="carCardsRow">
-                  {[...cars]
-                     .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-                     .map(car => (
-                      <Link key={car._id} to={`/cars/${car._id}`}>
-                        <CarCard car={car} />
-                      </Link>
-                    ))}
+                    {[...cars]
+                      .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+                      .map(car => (
+                        <Link key={car._id} to={`/cars/${car._id}`}>
+                          <CarCard car={car} />
+                        </Link>
+                      ))}
                   </div>
                 </div>
               </>
@@ -103,7 +119,7 @@ function App() {
   );
 }
 
-function CarCard({ car }) {
+function CarCard({ car }: CarCardProps) {
   return (
     <div className="car-card">
       {car.imageUrl && (
@@ -120,4 +136,4 @@ function CarCard({ car }) {
   );
 }
 
-export default App
+export default App;
