@@ -1,8 +1,15 @@
-const express = require('express');
-const router = express.Router();
-const { Car } = require('../models/event'); // Ensure Car is imported correctly
+import { Router, Request, Response } from 'express';
+import { Car } from '../models/event'; // Ensure Car is imported correctly
 
-router.get('/cars', async (req, res) => {
+const router = Router();
+
+interface reqBody {
+  name: string;
+  year: number;
+  chassisNumber: string;
+}
+
+router.get('/cars', async (req: Request, res: Response) => {
   try {
     const cars = await Car.find().sort({ date: 1 });
     res.json(cars);
@@ -11,7 +18,7 @@ router.get('/cars', async (req, res) => {
   }
 });
 
-router.post('/cars', async (req, res) => {
+router.post('/cars', async (req: Request<{}, {}, reqBody>, res: Response) => {
   const { name, year, chassisNumber } = req.body;
 
   if (!name || !year || !chassisNumber) {

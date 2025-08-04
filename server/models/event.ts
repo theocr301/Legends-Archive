@@ -1,6 +1,21 @@
-const mongoose = require('mongoose');
+import mongoose, { Schema, Types } from 'mongoose';
 
-const historySchema = new mongoose.Schema({
+interface IHistory {
+  title: string;
+  date: Date;
+  description: string;
+  _id?: Types.ObjectId;
+}
+
+interface ICar {
+  name: string;
+  year: number;
+  chassisNumber: string;
+  imageUrl?: string | null;
+  history: IHistory[];
+}
+
+const historySchema = new Schema<IHistory>({
   title: {
     type: String,
     required: true,
@@ -17,7 +32,7 @@ const historySchema = new mongoose.Schema({
   }
 });
 
-const carSchema = new mongoose.Schema({
+const carSchema = new Schema<ICar>({
   name: {
     type: String,
     required: true,
@@ -43,7 +58,5 @@ const carSchema = new mongoose.Schema({
   }, // Ensure history is always an array
 }, { timestamps: true });
 
-const History = mongoose.model('History', historySchema);
-const Car = mongoose.model('Car', carSchema);
-
-module.exports = { History, Car };
+export const History = mongoose.model<IHistory>('History', historySchema);
+export const Car = mongoose.model<ICar>('Car', carSchema);
