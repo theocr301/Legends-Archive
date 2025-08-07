@@ -5,7 +5,6 @@ import './carHistory.css';
 
 const API_BASE = "http://localhost:5001";
 
-// Define types
 interface HistoryEvent {
   _id: string;
   title: string;
@@ -25,6 +24,10 @@ interface Car {
 interface RouteParams {
   id: string;
 }
+type HistoryFormProps = {
+  carId: string;
+  onHistoryAdded: () => Promise<void>; 
+};
 
 function CarHistory() {
   const { id } = useParams() as { id: string };
