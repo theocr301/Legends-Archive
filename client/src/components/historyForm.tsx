@@ -1,4 +1,4 @@
-import { useState, ChangeEvent, FormEvent } from 'react';
+import React, { useState, ChangeEvent, FormEvent } from 'react';
 
 const API_BASE = "http://localhost:5001";
 
@@ -23,10 +23,11 @@ export default function HistoryForm({ carId, onHistoryAdded }: HistoryFormProps)
   const [submitting, setSubmitting] = useState(false);
 
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value,
-    });
+    const { name, value } = e.target;
+    setForm(prev => ({
+      ...prev,
+      [name]: value,
+    }));
   }
 
   async function handleSubmit(e: FormEvent) {
@@ -58,8 +59,9 @@ export default function HistoryForm({ carId, onHistoryAdded }: HistoryFormProps)
     } catch (err) {
       console.error('Network error:', err);
       alert('Network error');
+    } finally {
+      setSubmitting(false);
     }
-    setSubmitting(false);
   }
 
   return (
